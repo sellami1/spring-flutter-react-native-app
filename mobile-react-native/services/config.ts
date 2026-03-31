@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 
-const FALLBACK_API_BASE_URL = 'http://192.168.1.100:8080';
+const FALLBACK_API_BASE_URL = 'http://10.30.141.1:8080';
 
 type ExpoExtra = {
   apiBaseUrl?: string;
