@@ -8,7 +8,7 @@ If you want to present the project quickly, start here.
 
 Video link (replace with your final recording):
 
-- Full demo video: `https://your-video-host/full-demo-k3s`
+[Click me for full demo running k3s services](https://drive.google.com/file/d/1OYEPlQyrvSZatXnsc95cg-wzkSSoUy3g/view?usp=sharing)
 
 ### Demo Script (recommended order)
 
