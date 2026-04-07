@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table(name = "etudiants")
@@ -26,4 +27,12 @@ public class Student {
 
     @Column(nullable = false)
     private LocalDate dateNaissance;
+
+    public int age() {
+        return ageAt(LocalDate.now());
+    }
+
+    public int ageAt(LocalDate referenceDate) {
+        return Period.between(this.dateNaissance, referenceDate).getYears();
+    }
 }
