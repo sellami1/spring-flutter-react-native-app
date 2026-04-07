@@ -28,6 +28,9 @@ public class Student {
     @Column(nullable = false)
     private LocalDate dateNaissance;
 
+    @Column(nullable = false)
+    private Integer anneePremiereInscription;
+
     public int age() {
         return ageAt(LocalDate.now());
     }
