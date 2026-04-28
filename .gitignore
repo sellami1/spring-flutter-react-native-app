@@ -1,0 +1,114 @@
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+.pub-cache/
+.dart_tool/
+target/
+
+# Build artifacts
+build/
+dist/
+*.o
+*.a
+*.so
+
+# Compiled binaries
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+*.classpath
+.project
+.settings/
+dependency-reduced-pom.xml
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle
+.gradle/
+gradle-app.setting
+gradlew.bat.user
+
+# Flutter
+flutter_export_environment.sh
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# React Native
+*.jsbundle
+.metro-bundler-cache/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Docker
+.dockerignore
+
+# macOS specific
+.AppleDouble
+.LSOverride
+
+# Linux specific
+.directory
+
+# Windows specific
+.vscode-unsaved
+.vs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Local development
+local.properties
+*.private

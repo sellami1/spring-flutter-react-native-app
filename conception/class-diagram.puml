@@ -1,0 +1,40 @@
+@startuml student_department
+' Spring REST API - Entities class diagram
+' Render with PlantUML
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class Student <<Entity>> {
+  - id: Long
+  - cin: String
+  - nom: String
+  - dateNaissance: LocalDate
+  - anneePremiereInscription: Integer
+
+  - departement: Departement
+
+  + age(): int
+  + ageAt(referenceDate: LocalDate): int
+}
+
+class Departement <<Entity>> {
+  - id: Long
+  - nom: String
+
+  - etudiants: List<Student>
+}
+
+Student "0..*" --> "0..1" Departement : departement
+
+note right of Student
+  Table: etudiants
+  cin: unique, not null
+end note
+
+note right of Departement
+  Table: departements
+  nom: unique, not null
+end note
+
+@enduml
