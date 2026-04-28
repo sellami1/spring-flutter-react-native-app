@@ -9,7 +9,7 @@ RUN chmod +x mvnw
 RUN ./mvnw -q -DskipTests dependency:go-offline
 
 COPY src/ src/
-RUN ./mvnw -q -DskipTests clean package && \
+RUN ./mvnw -q -Dmaven.test.skip=true clean package && \
     JAR_PATH="$(find target -maxdepth 1 -name '*.jar' ! -name '*original*' | head -n 1)" && \
     cp "$JAR_PATH" /workspace/app.jar
 
