@@ -139,3 +139,81 @@ In Kubernetes, these are provided through deployment env values and `postgres-se
 
 - Build/push does not have to be executed on the K3s machine.
 - K3s machine must be able to pull the published image from Docker Hub.
+
+---
+
+## Code Review Process & Conventions
+
+### Overview
+All pull requests must go through a mandatory review process before merging into `main` or `version-3` branches. This ensures code quality, knowledge sharing, and consistency across the codebase.
+
+### Review Requirements
+- **Minimum Approvals:** At least 1 approval required before merge
+- **Review Deadline:** Reviews should be completed within **48 hours** of PR creation
+- **Mandatory Checks:** All CI/CD checks and tests must pass
+- **Conversation Resolution:** All review comments must be resolved before merge
+
+### Review Workflow
+
+1. **Create a Branch**
+   ```bash
+   git checkout version-3
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Create a Pull Request**
+   - Push your changes and create a PR targeting `version-3`
+   - Fill out the PR template completely
+   - Link the related Jira ticket
+   - Request reviewers
+
+3. **Address Feedback**
+   - Reviewers will add comments and suggestions
+   - Address all **blocking comments** before merge
+   - Push follow-up commits to the same branch
+   - Reply to comments explaining changes
+
+4. **Approval & Merge**
+   - Once approved and all checks pass, merge the PR
+   - Delete the feature branch after merging
+   - Update the related Jira ticket to "Done"
+
+### Reviewer Responsibilities
+
+- **Understand the Context:** Read the PR description and related Jira ticket
+- **Review Code Quality:** Check for readability, maintainability, and adherence to project standards
+- **Verify Tests:** Ensure tests cover the changes appropriately
+- **Check for Regressions:** Consider potential side effects or breaking changes
+- **Be Constructive:** Provide helpful, specific feedback with suggestions for improvement
+- **Respect Timeline:** Aim to complete reviews within 48 hours
+
+### Best Practices
+
+#### For Authors
+- Keep PRs focused and reasonably sized (aim for <400 lines of code)
+- Provide clear, descriptive commit messages
+- Include relevant unit and integration tests
+- Update documentation if needed
+- Run tests locally before pushing
+
+#### For Reviewers
+- Approve only when you're confident in the changes
+- Use "Request Changes" for blocking issues
+- Use "Comment" for suggestions or discussions
+- Ask questions if you don't understand the rationale
+- Acknowledge good code with positive feedback
+
+### Labels
+- `bug` — Bug fix
+- `enhancement` — New feature or improvement
+- `documentation` — Documentation update
+- `devops` — DevOps or infrastructure changes
+- `testing` — Test-related changes
+- `WIP` — Work in progress (do not merge)
+- `blocked` — Blocked by another PR or issue
+
+### Escalation
+If a review is not completed within 48 hours:
+1. Send a reminder to the reviewer
+2. Contact the team lead if still unresolved after 24 more hours
+3. In urgent cases, escalate to the project manager

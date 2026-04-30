@@ -1,6 +1,3 @@
-Here's a clean and structured **Markdown version** of the document you provided, ready for use in a `README.md`, documentation, or GitHub wiki:
-
-```markdown
 # Activités d'Intégration de Compétences — Partie 3
 
 ## Objectif général
