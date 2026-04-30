@@ -1,12 +1,12 @@
-task,summary,status,comment
-"Add age() to Student entity","Add age() to Student entity",done,"rest-spring-api/src/main/java/tn/sellami/students/rest_spring_api/entity/Student.java"
-"BDD Gherkin test for student age","BDD Gherkin test for student age",done,"rest-spring-api/src/test/resources/features/student-age.feature; rest-spring-api/src/test/java/tn/sellami/students/rest_spring_api/steps/StudentAgeStepDefinitions.java"
-"Static index.html with Fetch JavaScript","Static index.html with Fetch JavaScript",done,"rest-spring-api/src/main/resources/static/index.html"
-"Build Docker image for the Spring service","Build Docker image for the Spring service",done,"rest-spring-api/Dockerfile"
-"Publish Docker image to Docker Hub","Publish Docker image to Docker Hub",done,"No registry publish metadata found in repository"
-"Kubernetes manifests for K3S deployment","Kubernetes manifests for K3S deployment",done,"k8s/rest-spring-api-deployment.yaml; k8s/postgres-deployment.yaml; k8s/redis-deployment.yaml"
-"Custom repository query for first inscription year","Custom repository query for first inscription year",done,"rest-spring-api/src/main/java/tn/sellami/students/rest_spring_api/repository/StudentRepository.java"
-"Complete CRUD for Etudiant and Departement","Complete CRUD for Etudiant and Departement",done,"rest-spring-api/src/main/java/tn/sellami/students/rest_spring_api/controller/StudentController.java; rest-spring-api/src/main/java/tn/sellami/students/rest_spring_api/controller/DepartementController.java"
-"Global HTTP error handling","Global HTTP error handling",done,"rest-spring-api/src/main/java/tn/sellami/students/rest_spring_api/exception/GlobalExceptionHandler.java"
-"Swagger/OpenAPI documentation","Swagger/OpenAPI documentation",done,"rest-spring-api/src/main/java/tn/sellami/students/rest_spring_api/config/OpenApiConfig.java; rest-spring-api/pom.xml"
-"Redis cache support","Redis cache support",done,"rest-spring-api/src/main/java/tn/sellami/students/rest_spring_api/config/CacheConfig.java; rest-spring-api/src/main/java/tn/sellami/students/rest_spring_api/service/StudentService.java"
+Summary,Key,Type,Parent Key,Assignee,Due date,Labels,Team,Start date,Sprint,Story point estimate,Reporter
+Add age() to Student entity,,Task,,Unassigned,,,,,,,Copilot
+BDD Gherkin test for student age,,Task,,Unassigned,,,,,,,Copilot
+Static index.html with Fetch JavaScript,,Task,,Unassigned,,,,,,,Copilot
+Build Docker image for the Spring service,,Task,,Unassigned,,,,,,,Copilot
+Publish Docker image to Docker Hub,,Task,,Unassigned,,,,,,,Copilot
+Kubernetes manifests for K3S deployment,,Task,,Unassigned,,,,,,,Copilot
+Custom repository query for first inscription year,,Task,,Unassigned,,,,,,,Copilot
+Complete CRUD for Etudiant and Departement,,Task,,Unassigned,,,,,,,Copilot
+Global HTTP error handling,,Task,,Unassigned,,,,,,,Copilot
+Swagger/OpenAPI documentation,,Task,,Unassigned,,,,,,,Copilot
+Redis cache support,,Task,,Unassigned,,,,,,,Copilot

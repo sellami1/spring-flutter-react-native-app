@@ -1,4 +1,4 @@
-task,summary,status,comment
-"Spring REST API baseline for students","Spring REST API baseline for students",done,"rest-spring-api/src/main/java/tn/sellami/students/rest_spring_api/controller/StudentController.java"
-"PostgreSQL configuration via Docker and Compose","PostgreSQL configuration via Docker and Compose",done,"docker-compose.yml; rest-spring-api/src/main/resources/application.properties"
-"Initial seed data with at least five students","Initial seed data with at least five students",done,"rest-spring-api/src/main/resources/data.sql"
+Summary,Key,Type,Parent Key,Assignee,Due date,Labels,Team,Start date,Sprint,Story point estimate,Reporter
+Spring REST API baseline for students,,Task,,Unassigned,,,,,,,Copilot
+PostgreSQL configuration via Docker and Compose,,Task,,Unassigned,,,,,,,Copilot
+Initial seed data with at least five students,,Task,,Unassigned,,,,,,,Copilot
