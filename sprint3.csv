@@ -1,0 +1,10 @@
+Summary,Key,Type,Parent Key,Assignee,Due date,Labels,Team,Start date,Sprint,Story point estimate,Reporter
+Prepare Sprint 3 backlog and Jira workflow,DM-21,Story,DM-21,Unassigned,26/05/02,"jira,workflow,planning",DevOps,26/05/01,DM Sprint 3,2,Copilot
+Configure GitHub branch protection and review templates,DM-22,Task,DM-21,Unassigned,26/05/05,"github,workflow,review",DevOps,26/05/01,DM Sprint 3,3,Copilot
+Build grading-service CRUD with Swagger and error handling,DM-23,Task,DM-21,Unassigned,26/05/09,"backend,grading-service,swagger",Backend,26/05/01,DM Sprint 3,8,Copilot
+Add Eureka server and register microservices,DM-24,Task,DM-21,Unassigned,26/05/09,"backend,eureka,spring-cloud",Backend,26/05/01,DM Sprint 3,5,Copilot
+Integrate Feign client for student validation,DM-25,Task,DM-21,Unassigned,26/05/10,"backend,feign,grading-service",Backend,26/05/01,DM Sprint 3,3,Copilot
+Implement API Gateway routing for student and grading services,DM-26,Task,DM-21,Unassigned,26/05/12,"backend,gateway,spring-cloud",Backend,26/05/01,DM Sprint 3,5,Copilot
+Update mobile app to filter students by department via gateway,DM-27,Task,DM-21,Unassigned,26/05/13,"mobile,gateway,departements",Mobile,26/05/01,DM Sprint 3,5,Copilot
+Create Next.js frontend for students and departments,DM-28,Task,DM-21,Unassigned,26/05/14,"frontend,nextjs,tailwind",Frontend,26/05/01,DM Sprint 3,8,Copilot
+Update docker-compose for the full microservices stack,DM-29,Task,DM-21,Unassigned,26/05/15,"devops,docker-compose,microservices",DevOps,26/05/01,DM Sprint 3,5,Copilot

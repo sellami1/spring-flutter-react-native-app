@@ -1,0 +1,12 @@
+Summary,Key,Type,Parent Key,Assignee,Due date,Labels,Team,Start date,Sprint,Story point estimate,Reporter
+Add age() to Student entity,,Task,,Unassigned,,,,,,,Copilot
+BDD Gherkin test for student age,,Task,,Unassigned,,,,,,,Copilot
+Static index.html with Fetch JavaScript,,Task,,Unassigned,,,,,,,Copilot
+Build Docker image for the Spring service,,Task,,Unassigned,,,,,,,Copilot
+Publish Docker image to Docker Hub,,Task,,Unassigned,,,,,,,Copilot
+Kubernetes manifests for K3S deployment,,Task,,Unassigned,,,,,,,Copilot
+Custom repository query for first inscription year,,Task,,Unassigned,,,,,,,Copilot
+Complete CRUD for Etudiant and Departement,,Task,,Unassigned,,,,,,,Copilot
+Global HTTP error handling,,Task,,Unassigned,,,,,,,Copilot
+Swagger/OpenAPI documentation,,Task,,Unassigned,,,,,,,Copilot
+Redis cache support,,Task,,Unassigned,,,,,,,Copilot
