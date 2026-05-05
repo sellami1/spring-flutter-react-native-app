@@ -1,0 +1,59 @@
+package tn.sellami.students.gradingservice.service;
+
+import org.springframework.stereotype.Service;
+import tn.sellami.students.gradingservice.dto.NoteDto;
+import tn.sellami.students.gradingservice.entity.Note;
+import tn.sellami.students.gradingservice.exception.ResourceNotFoundException;
+import tn.sellami.students.gradingservice.mapper.NoteMapper;
+import tn.sellami.students.gradingservice.repository.NoteRepository;
+
+import java.util.List;
+
+@Service
+public class NoteService {
+
+    private final NoteRepository noteRepository;
+
+    public NoteService(NoteRepository noteRepository) {
+        this.noteRepository = noteRepository;
+    }
+
+    public List<NoteDto> findAll() {
+        return noteRepository.findAll().stream()
+                .map(NoteMapper::toDto)
+                .toList();
+    }
+
+    public List<NoteDto> findByStudentId(Long studentId) {
+        return noteRepository.findByStudentId(studentId).stream()
+                .map(NoteMapper::toDto)
+                .toList();
+    }
+
+    public NoteDto findById(Long id) {
+        Note note = noteRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Note not found with id " + id));
+        return NoteMapper.toDto(note);
+    }
+
+    public NoteDto create(NoteDto noteDto) {
+        Note note = NoteMapper.toEntity(noteDto);
+        note.setId(null);
+        Note saved = noteRepository.save(note);
+        return NoteMapper.toDto(saved);
+    }
+
+    public NoteDto update(Long id, NoteDto noteDto) {
+        Note existing = noteRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Note not found with id " + id));
+        NoteMapper.updateEntity(existing, noteDto);
+        Note saved = noteRepository.save(existing);
+        return NoteMapper.toDto(saved);
+    }
+
+    public void delete(Long id) {
+        Note existing = noteRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Note not found with id " + id));
+        noteRepository.delete(existing);
+    }
+}
