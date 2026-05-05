@@ -112,3 +112,4 @@ env/
 # Local development
 local.properties
 *.private
+scripts/*

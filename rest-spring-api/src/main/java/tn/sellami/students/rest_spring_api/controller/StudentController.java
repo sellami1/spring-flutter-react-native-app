@@ -28,9 +28,12 @@ public class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<StudentDto>> getAllStudents() {
-        List<StudentDto> students = studentService.findAll();
-        return ResponseEntity.ok(students);
+    public ResponseEntity<List<StudentDto>> getAllStudents(
+            @RequestParam(value = "departementId", required = false) Long departementId) {
+        if (departementId == null) {
+            return ResponseEntity.ok(studentService.findAll());
+        }
+        return ResponseEntity.ok(studentService.findByDepartementId(departementId));
     }
 
     @GetMapping("/{id}")

@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sand: #f7f2e8;
+  --mist: #f1ede4;
+  --ink: #1a1a1a;
+  --sage: #0f766e;
+  --clay: #c47f55;
+  --midnight: #1f2a2f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top left, #f9f4e9 0%, #f3ecdf 45%, #efe7d7 100%);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-backdrop {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 15%, rgba(15, 118, 110, 0.14), transparent 45%),
+    radial-gradient(circle at 90% 20%, rgba(196, 127, 85, 0.18), transparent 40%),
+    radial-gradient(circle at 40% 80%, rgba(31, 42, 47, 0.12), transparent 45%);
+  z-index: -1;
+}

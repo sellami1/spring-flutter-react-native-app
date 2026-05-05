@@ -35,9 +35,16 @@ class StudentService {
     return _webBaseUrl;
   }
 
-  Future<List<Student>> fetchStudents() async {
+  Future<List<Student>> fetchStudents({int? departementId}) async {
     final baseUrl = await _resolveBaseUrl();
-    final response = await http.get(Uri.parse('$baseUrl/api/etudiants'));
+    final uri = Uri.parse('$baseUrl/api/etudiants').replace(
+      queryParameters: departementId == null
+          ? null
+          : {
+              'departementId': departementId.toString(),
+            },
+    );
+    final response = await http.get(uri);
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load students (HTTP ${response.statusCode})');
