@@ -5,9 +5,9 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/student.dart';
+import '../models/departement.dart';
 
-class StudentService {
+class DepartementService {
   static const String _emulatorBaseUrl = 'http://10.30.141.1:8080';
   static const String _androidPhysicalBaseUrl = String.fromEnvironment(
     'API_BASE_URL_ANDROID_PHYSICAL',
@@ -35,19 +35,12 @@ class StudentService {
     return _webBaseUrl;
   }
 
-  Future<List<Student>> fetchStudents({int? departementId}) async {
+  Future<List<Departement>> fetchDepartements() async {
     final baseUrl = await _resolveBaseUrl();
-    final uri = Uri.parse('$baseUrl/api/etudiants').replace(
-      queryParameters: departementId == null
-          ? null
-          : {
-              'departementId': departementId.toString(),
-            },
-    );
-    final response = await http.get(uri);
+    final response = await http.get(Uri.parse('$baseUrl/api/departements'));
 
     if (response.statusCode != 200) {
-      throw Exception('Failed to load students (HTTP ${response.statusCode})');
+      throw Exception('Failed to load departments (HTTP ${response.statusCode})');
     }
 
     final data = jsonDecode(response.body);
@@ -56,7 +49,7 @@ class StudentService {
     }
 
     return data
-        .map((item) => Student.fromJson(item as Map<String, dynamic>))
+        .map((item) => Departement.fromJson(item as Map<String, dynamic>))
         .toList();
   }
 }

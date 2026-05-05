@@ -51,6 +51,8 @@ services:
             REDIS_HOST: redis
             REDIS_PORT: 6379
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+            EUREKA_INSTANCE_PREFER_IP_ADDRESS: "false"
+            EUREKA_INSTANCE_HOSTNAME: etudiant-service
         depends_on:
             postgres:
                 condition: service_healthy
@@ -72,6 +74,8 @@ services:
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+            EUREKA_INSTANCE_PREFER_IP_ADDRESS: "false"
+            EUREKA_INSTANCE_HOSTNAME: grading-service
         depends_on:
             postgres:
                 condition: service_healthy
@@ -86,11 +90,25 @@ services:
         environment:
             SERVER_PORT: 8080
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+            EUREKA_INSTANCE_PREFER_IP_ADDRESS: "false"
+            EUREKA_INSTANCE_HOSTNAME: api-gateway
         depends_on:
             eureka-server:
                 condition: service_started
         ports:
             - '8080:8080'
+    frontend:
+        build:
+            context: ./frontend
+        container_name: students-frontend
+        environment:
+            API_BASE_URL: http://api-gateway:8080
+            NEXT_PUBLIC_API_BASE_URL: http://localhost:8080
+        depends_on:
+            api-gateway:
+                condition: service_started
+        ports:
+            - '3000:3000'
 volumes:
     postgres_data: null
     postgres16_data: null

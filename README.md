@@ -2,6 +2,38 @@
 
 Spring Boot backend for students/departments with a built-in static web UI (`index.html`), Docker packaging, and Kubernetes manifests for local K3s deployment.
 
+## Sprint 3 (Microservices)
+
+Sprint 3 evolves the backend into a microservices architecture with:
+
+- `eureka-server` (service discovery)
+- `api-gateway` (single entrypoint + routing via discovery)
+- `rest-spring-api` as `etudiant-service` (students + departments)
+- `grading-service` (notes CRUD + validation via Feign)
+
+Ports (local):
+
+- Eureka: `8761`
+- API Gateway: `8080`
+- Etudiant service: `8081`
+- Grading service: `8082`
+
+Run locally (Docker Compose):
+
+```bash
+docker compose up --build
+```
+
+Verify:
+
+- Eureka UI: `http://localhost:8761`
+- Through gateway:
+   - `GET http://localhost:8080/api/departements`
+   - `GET http://localhost:8080/api/etudiants`
+   - `GET http://localhost:8080/api/notes`
+
+Sprint 3 delivery summary and git/PR steps are in `READACT3.md`.
+
 ## Demo First (K3s)
 
 If you want to present the project quickly, start here.
@@ -35,9 +67,14 @@ sudo k3s kubectl -n students get svc rest-spring-api
 
 ## Repository Structure
 
-- `rest-spring-api/`: Spring Boot service + static UI + Dockerfile
+- `rest-spring-api/`: Spring Boot service (Sprint 3: runs as `etudiant-service`) + static UI + Dockerfile
+- `grading-service/`: Spring Boot microservice for notes (Sprint 3)
+- `eureka-server/`: Eureka service discovery (Sprint 3)
+- `api-gateway/`: Spring Cloud Gateway (Sprint 3)
 - `k8s/`: Kubernetes manifests (namespace, postgres, redis, app)
-- `activity_part1.md`, `activity_part2.md`: assignment statements
+- `activity_part1.md`, `activity_part2.md`, `activity_part3.md`: assignment statements
+- `IMPLEMENTATION_PLAN_PART3_MICROSERVICES.md`, `IMPLEMENTATION_PLAN_PART3_Q3_Q4_Q7.md`: implementation plans
+- `READACT3.md`: Sprint 3 “what’s done” + verification + git workflow
 - `K3S_Q6_DEPLOYMENT_GUIDE.md`: additional deployment notes
 
 ## Features Implemented
@@ -52,6 +89,13 @@ sudo k3s kubectl -n students get svc rest-spring-api
 - Docker image build and publish flow
 - K3s manifests for API + PostgreSQL + Redis
 
+Sprint 3 additions:
+
+- Eureka discovery (server + clients)
+- API Gateway routing via service discovery
+- Grading microservice (CRUD notes) + Feign validation
+- Unified `docker-compose.yml` orchestration for local run
+
 ## Tech Stack
 
 - Java 21
@@ -61,6 +105,10 @@ sudo k3s kubectl -n students get svc rest-spring-api
 - Redis
 - Docker
 - K3s / Kubernetes
+
+Sprint 3:
+
+- Spring Cloud (Eureka, Gateway, OpenFeign)
 
 ## Docker Image
 

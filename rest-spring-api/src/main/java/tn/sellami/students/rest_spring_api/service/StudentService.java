@@ -35,6 +35,12 @@ public class StudentService {
         return studentRepository.findByAnneePremiereInscription(year).stream().map(StudentMapper::toDto).toList();
     }
 
+    public List<StudentDto> findByDepartementId(Long departementId) {
+        return studentRepository.findByDepartementId(departementId).stream()
+                .map(StudentMapper::toDto)
+                .toList();
+    }
+
     @CacheEvict(value = "etudiants", allEntries = true)
     public StudentDto create(StudentDto studentDto) {
         Student student = StudentMapper.toEntity(studentDto);

@@ -10,7 +10,7 @@ type UseStudentsResult = {
   refresh: () => Promise<void>;
 };
 
-export function useStudents(): UseStudentsResult {
+export function useStudents(departementId?: number): UseStudentsResult {
   const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +20,7 @@ export function useStudents(): UseStudentsResult {
     setError(null);
 
     try {
-      const result = await getStudents();
+      const result = await getStudents(departementId);
       setStudents(result);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unable to load students';
@@ -28,7 +28,7 @@ export function useStudents(): UseStudentsResult {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [departementId]);
 
   useEffect(() => {
     refresh();
