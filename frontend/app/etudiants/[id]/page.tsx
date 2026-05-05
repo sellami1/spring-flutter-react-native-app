@@ -6,14 +6,15 @@ import { fetchJson } from '../../lib/api';
 import type { Student } from '../../lib/types';
 
 type PageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export default async function EtudiantDetailPage({ params }: PageProps) {
   let student: Student;
+  const { id } = await params;
 
   try {
-    student = await fetchJson<Student>(`/api/etudiants/${params.id}`);
+    student = await fetchJson<Student>(`/api/etudiants/${id}`);
   } catch {
     notFound();
   }
