@@ -30,13 +30,19 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
-    rest-spring-api:
+    eureka-server:
+        build:
+            context: ./eureka-server
+        container_name: students-eureka-server
+        ports:
+            - '8761:8761'
+    etudiant-service:
         build:
             context: ./rest-spring-api
             dockerfile: Dockerfile
-        container_name: students-rest-spring-api
+        container_name: students-etudiant-service
         environment:
-            SERVER_PORT: 8080
+            SERVER_PORT: 8081
             DB_HOST: postgres
             DB_PORT: 5432
             DB_NAME: students_db
@@ -44,11 +50,45 @@ services:
             DB_PASSWORD: postgres
             REDIS_HOST: redis
             REDIS_PORT: 6379
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
         depends_on:
             postgres:
                 condition: service_healthy
             redis:
                 condition: service_healthy
+            eureka-server:
+                condition: service_started
+        ports:
+            - '8081:8081'
+    grading-service:
+        build:
+            context: ./grading-service
+        container_name: students-grading-service
+        environment:
+            SERVER_PORT: 8082
+            DB_HOST: postgres
+            DB_PORT: 5432
+            DB_NAME: students_db
+            DB_USERNAME: postgres
+            DB_PASSWORD: postgres
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+        depends_on:
+            postgres:
+                condition: service_healthy
+            eureka-server:
+                condition: service_started
+        ports:
+            - '8082:8082'
+    api-gateway:
+        build:
+            context: ./api-gateway
+        container_name: students-api-gateway
+        environment:
+            SERVER_PORT: 8080
+            EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+        depends_on:
+            eureka-server:
+                condition: service_started
         ports:
             - '8080:8080'
 volumes:
