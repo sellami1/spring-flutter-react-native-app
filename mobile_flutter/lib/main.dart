@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'models/departement.dart';
 import 'models/student.dart';
+import 'services/departement_service.dart';
 import 'services/student_service.dart';
 
 void main() {
@@ -31,6 +33,10 @@ class StudentsPage extends StatefulWidget {
 
 class _StudentsPageState extends State<StudentsPage> {
   final StudentService _studentService = StudentService();
+  final DepartementService _departementService = DepartementService();
+
+  late Future<List<Departement>> _departementsFuture;
+  int? _selectedDepartementId;
 
   bool _loading = true;
   String? _error;
@@ -39,6 +45,7 @@ class _StudentsPageState extends State<StudentsPage> {
   @override
   void initState() {
     super.initState();
+    _departementsFuture = _departementService.fetchDepartements();
     _loadStudents();
   }
 
@@ -49,7 +56,9 @@ class _StudentsPageState extends State<StudentsPage> {
     });
 
     try {
-      final students = await _studentService.fetchStudents();
+      final students = await _studentService.fetchStudents(
+        departementId: _selectedDepartementId,
+      );
       setState(() {
         _students = students;
       });
@@ -78,43 +87,113 @@ class _StudentsPageState extends State<StudentsPage> {
   }
 
   Widget _buildBody() {
+    return FutureBuilder<List<Departement>>(
+      future: _departementsFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (snapshot.hasError) {
+          return ListView(
+            children: [
+              const SizedBox(height: 120),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Text(
+                  'Unable to load departments: ${snapshot.error}',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Center(
+                child: FilledButton(
+                  onPressed: () {
+                    setState(() {
+                      _departementsFuture = _departementService.fetchDepartements();
+                    });
+                  },
+                  child: const Text('Retry'),
+                ),
+              ),
+            ],
+          );
+        }
+
+        final departements = snapshot.data ?? [];
+
+        return ListView(
+          padding: const EdgeInsets.all(12),
+          children: [
+            Text(
+              'Filter by department',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 8),
+            DropdownButtonFormField<int?> (
+              value: _selectedDepartementId,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Select a department',
+              ),
+              items: [
+                const DropdownMenuItem<int?>(
+                  value: null,
+                  child: Text('All departments'),
+                ),
+                ...departements.map(
+                  (departement) => DropdownMenuItem<int?>(
+                    value: departement.id,
+                    child: Text(departement.nom),
+                  ),
+                ),
+              ],
+              onChanged: (value) {
+                setState(() {
+                  _selectedDepartementId = value;
+                });
+                _loadStudents();
+              },
+            ),
+            const SizedBox(height: 16),
+            _buildStudentsSection(),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildStudentsSection() {
     if (_loading) {
       return const Center(child: CircularProgressIndicator());
     }
 
     if (_error != null) {
-      return ListView(
+      return Column(
         children: [
-          const SizedBox(height: 120),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Text(
-              _error!,
-              textAlign: TextAlign.center,
-            ),
+          Text(
+            _error!,
+            textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 16),
-          Center(
-            child: FilledButton(
-              onPressed: _loadStudents,
-              child: const Text('Retry'),
-            ),
+          const SizedBox(height: 12),
+          FilledButton(
+            onPressed: _loadStudents,
+            child: const Text('Retry'),
           ),
         ],
       );
     }
 
     if (_students.isEmpty) {
-      return ListView(
-        children: const [
-          SizedBox(height: 120),
-          Center(child: Text('No students found.')),
-        ],
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 24),
+        child: Center(child: Text('No students found.')),
       );
     }
 
     return ListView.separated(
-      padding: const EdgeInsets.all(12),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: _students.length,
       separatorBuilder: (context, index) => const SizedBox(height: 8),
       itemBuilder: (_, index) {

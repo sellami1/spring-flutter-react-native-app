@@ -1,4 +1,4 @@
 Summary,Key,Type,Parent Key,Assignee,Due date,Labels,Team,Start date,Sprint,Story point estimate,Reporter
-Spring REST API baseline for students,,Task,,Unassigned,,,,,,,Copilot
-PostgreSQL configuration via Docker and Compose,,Task,,Unassigned,,,,,,,Copilot
-Initial seed data with at least five students,,Task,,Unassigned,,,,,,,Copilot
+Spring REST API baseline for students,DM-0,Task,,Unassigned,,,,,,,Copilot
+PostgreSQL configuration via Docker and Compose,DM-1,Task,,Unassigned,,,,,,,Copilot
+Initial seed data with at least five students,DM-2,Task,,Unassigned,,,,,,,Copilot
