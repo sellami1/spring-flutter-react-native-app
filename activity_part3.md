@@ -6,7 +6,7 @@ Faire évoluer le projet vers une architecture micro services complète en intro
 
 ---
 
-## Q1 — Créer une branche Git version-3 et ajouter le Sprint 3 dans Jira
+## Q1 — Créer une branche Git version-3 et ajouter le Sprint 3 dans Jira 
 
 Isolez votre travail dans une branche dédiée créée à partir de `version-2` :
 
