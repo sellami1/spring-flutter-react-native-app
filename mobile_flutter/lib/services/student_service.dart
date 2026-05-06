@@ -11,7 +11,7 @@ class StudentService {
   static const String _emulatorBaseUrl = 'http://10.30.141.1:8080';
   static const String _androidPhysicalBaseUrl = String.fromEnvironment(
     'API_BASE_URL_ANDROID_PHYSICAL',
-    defaultValue: 'http://192.168.1.100:8080',
+    defaultValue: 'http://192.168.1.19:8080',
   );
   static const String _iosBaseUrl =
       String.fromEnvironment('API_BASE_URL_IOS', defaultValue: 'http://localhost:8080');
