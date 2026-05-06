@@ -1,3 +1,4 @@
+Testing github with jira atlassian.
 # Spring REST API Mobile Students App
 
 Spring Boot backend for students/departments with a built-in static web UI (`index.html`), Docker packaging, and Kubernetes manifests for local K3s deployment.
