@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import StudentForm from '../../components/StudentForm';
-import { fetchJson } from '../../lib/api';
+import { getStudentById } from '../../lib/api';
 import type { Student } from '../../lib/types';
 
 type PageProps = {
@@ -14,7 +14,7 @@ export default async function EtudiantDetailPage({ params }: PageProps) {
   const { id } = await params;
 
   try {
-    student = await fetchJson<Student>(`/api/etudiants/${id}`);
+    student = await getStudentById(id);
   } catch {
     notFound();
   }
