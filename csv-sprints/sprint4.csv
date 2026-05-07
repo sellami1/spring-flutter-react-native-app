@@ -1,0 +1,16 @@
+Label,Summary,Issue Key,Sprint (DM Sprint 4),Assignee
+planning,Create branch version-4 and initialize Jira Sprint 4 backlog,DM-30,DM Sprint 4,kadhemsellami1@gmail.com
+planning,Write Sprint 4 user stories and acceptance criteria for Q1-Q6,DM-31,DM Sprint 4,kadhemsellami1@gmail.com
+testing-unit,Implement JUnit5 and Mockito unit tests for EtudiantService business logic,DM-32,DM Sprint 4,kadhemsellami1@gmail.com
+testing-integration,Implement Spring Boot integration tests with PostgreSQL Testcontainers,DM-33,DM Sprint 4,kadhemsellami1@gmail.com
+testing-e2e,Add Cypress E2E scenarios for student list and create flow in Next.js frontend,DM-34,DM Sprint 4,kadhemsellami1@gmail.com
+testing-performance,Create Gatling stress scenario for GET /api/etudiants and performance thresholds,DM-35,DM Sprint 4,kadhemsellami1@gmail.com
+quality,Configure JaCoCo coverage gate >= 80 percent in Maven verify lifecycle,DM-36,DM Sprint 4,kadhemsellami1@gmail.com
+ci,Add Testcontainers dependencies and CI compatibility checks on GitHub Actions Ubuntu runners,DM-37,DM Sprint 4,kadhemsellami1@gmail.com
+jira-github,Integrate GitHub for Jira and enforce issue key naming in branches commits and PR titles,DM-38,DM Sprint 4,kadhemsellami1@gmail.com
+xray,Install and configure Xray entities: Tests Test Plan and Test Execution for Sprint 4,DM-39,DM Sprint 4,kadhemsellami1@gmail.com
+xray-ci,Publish Maven Surefire JUnit XML results to Xray via API in GitHub Actions,DM-40,DM Sprint 4,kadhemsellami1@gmail.com
+auth-service,Scaffold auth-service with Express and MongoDB connection management,DM-41,DM Sprint 4,kadhemsellami1@gmail.com
+auth-service,Implement JWT authentication endpoints POST /auth/register and POST /auth/login,DM-42,DM Sprint 4,kadhemsellami1@gmail.com
+devops,Add auth-service and MongoDB services to docker-compose with environment and networking,DM-43,DM Sprint 4,kadhemsellami1@gmail.com
+documentation,Document test strategy traceability workflow and auth-service operational runbook,DM-44,DM Sprint 4,kadhemsellami1@gmail.com

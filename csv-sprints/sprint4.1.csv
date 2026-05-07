@@ -1,0 +1,16 @@
+Label,Summary,Assignee
+planning,Create branch version-4 and initialize Jira Sprint 4 backlog,kadhemsellami1@gmail.com
+planning,Write Sprint 4 user stories and acceptance criteria for Q1-Q6,kadhemsellami1@gmail.com
+testing-unit,Implement JUnit5 and Mockito unit tests for EtudiantService business logic,kadhemsellami1@gmail.com
+testing-integration,Implement Spring Boot integration tests with PostgreSQL Testcontainers,kadhemsellami1@gmail.com
+testing-e2e,Add Cypress E2E scenarios for student list and create flow in Next.js frontend,kadhemsellami1@gmail.com
+testing-performance,Create Gatling stress scenario for GET /api/etudiants and performance thresholds,kadhemsellami1@gmail.com
+quality,Configure JaCoCo coverage gate >= 80 percent in Maven verify lifecycle,kadhemsellami1@gmail.com
+ci,Add Testcontainers dependencies and CI compatibility checks on GitHub Actions Ubuntu runners,kadhemsellami1@gmail.com
+jira-github,Integrate GitHub for Jira and enforce issue key naming in branches commits and PR titles,kadhemsellami1@gmail.com
+xray,Install and configure Xray entities: Tests Test Plan and Test Execution for Sprint 4,kadhemsellami1@gmail.com
+xray-ci,Publish Maven Surefire JUnit XML results to Xray via API in GitHub Actions,kadhemsellami1@gmail.com
+auth-service,Scaffold auth-service with Express and MongoDB connection management,kadhemsellami1@gmail.com
+auth-service,Implement JWT authentication endpoints POST /auth/register and POST /auth/login,kadhemsellami1@gmail.com
+devops,Add auth-service and MongoDB services to docker-compose with environment and networking,kadhemsellami1@gmail.com
+documentation,Document test strategy traceability workflow and auth-service operational runbook,kadhemsellami1@gmail.com
