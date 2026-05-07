@@ -1,0 +1,265 @@
+
+DevTools listening on ws://127.0.0.1:35665/devtools/browser/0f1d1526-a558-46db-94d1-733dbe0aa4e7
+Missing baseUrl in compilerOptions. tsconfig-paths will be skipped
+
+====================================================================================================
+
+  (Run Starting)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Cypress:        13.17.0                                                                        │
+  │ Browser:        Electron 118 (headless)                                                        │
+  │ Node Version:   v24.14.0 (/home/kadhem/.nvm/versions/node/v24.14.0/bin/node)                   │
+  │ Specs:          1 found (etudiants.cy.ts)                                                      │
+  │ Searched:       cypress/e2e/etudiants.cy.ts                                                    │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                                                                                                    
+  Running:  etudiants.cy.ts                                                                 (1 of 1)
+{
+  "stats": {
+    "suites": 5,
+    "tests": 10,
+    "passes": 9,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-05-06T16:56:09.102Z",
+    "end": "2026-05-06T16:56:47.486Z",
+    "duration": 38384
+  },
+  "tests": [
+    {
+      "title": "loads the actual students page",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Student page loads the actual students page",
+      "duration": 1879,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "shows the list cards or empty state",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Student page shows the list cards or empty state",
+      "duration": 135,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "shows the department filter form",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Student page shows the department filter form",
+      "duration": 154,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "shows the real list details when a student card exists",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Student page shows the real list details when a student card exists",
+      "duration": 10207,
+      "currentRetry": 2,
+      "err": {
+        "message": "Timed out retrying after 10000ms: Expected to find content: 'h3' within the element: <article.rounded-2xl.border.border-white/60.bg-white/70.p-5.shadow-soft.backdrop-blur> but never did.",
+        "type": "existence",
+        "name": "AssertionError",
+        "stack": "AssertionError: Timed out retrying after 10000ms: Expected to find content: 'h3' within the element: <article.rounded-2xl.border.border-white/60.bg-white/70.p-5.shadow-soft.backdrop-blur> but never did.\n    at Context.eval (webpack://frontend/./cypress/e2e/etudiants.cy.ts:27:0)",
+        "parsedStack": [
+          {
+            "message": "AssertionError: Timed out retrying after 10000ms: Expected to find content: 'h3' within the element: <article.rounded-2xl.border.border-white/60.bg-white/70.p-5.shadow-soft.backdrop-blur> but never did.",
+            "whitespace": ""
+          },
+          {
+            "function": "Context.eval",
+            "fileUrl": "http://192.168.1.19:3000/__cypress/tests?p=cypress/e2e/etudiants.cy.ts",
+            "originalFile": "webpack://frontend/./cypress/e2e/etudiants.cy.ts",
+            "relativeFile": "cypress/e2e/etudiants.cy.ts",
+            "absoluteFile": "/home/kadhem/devops-m1/M-Wahid/spring-rest-api-mobile-students-app/frontend/cypress/e2e/etudiants.cy.ts",
+            "line": 27,
+            "column": 0,
+            "whitespace": "    "
+          }
+        ],
+        "codeFrame": {
+          "line": 27,
+          "column": 1,
+          "originalFile": "cypress/e2e/etudiants.cy.ts",
+          "relativeFile": "frontend/cypress/e2e/etudiants.cy.ts",
+          "absoluteFile": "/home/kadhem/devops-m1/M-Wahid/spring-rest-api-mobile-students-app/frontend/cypress/e2e/etudiants.cy.ts",
+          "frame": "  25 |                 if (cards.length > 0) {\n  26 |                     cy.get('article').first().within(() => {\n> 27 |                         cy.contains('h3').should('exist');\n     | ^\n  28 |                         cy.contains('CIN').should('exist');\n  29 |                         cy.contains('Birth date').should('exist');\n  30 |                         cy.contains('First inscription').should('exist');",
+          "language": "ts"
+        }
+      }
+    },
+    {
+      "title": "submits the create form with a stubbed API response",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Create flow submits the create form with a stubbed API response",
+      "duration": 1877,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "keeps the form on the same page and exposes validation through native required fields",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Create flow keeps the form on the same page and exposes validation through native required fields",
+      "duration": 384,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "opens an edit page when a student card is available",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Navigation opens an edit page when a student card is available",
+      "duration": 958,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "renders on mobile viewport",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Responsive layout renders on mobile viewport",
+      "duration": 404,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "renders on tablet viewport",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Responsive layout renders on tablet viewport",
+      "duration": 419,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "renders on desktop viewport",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Responsive layout renders on desktop viewport",
+      "duration": 1190,
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "pending": [],
+  "failures": [
+    {
+      "title": "shows the real list details when a student card exists",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Student page shows the real list details when a student card exists",
+      "duration": 10210,
+      "currentRetry": 2,
+      "err": {
+        "message": "Timed out retrying after 10000ms: Expected to find content: 'h3' within the element: <article.rounded-2xl.border.border-white/60.bg-white/70.p-5.shadow-soft.backdrop-blur> but never did.",
+        "type": "existence",
+        "name": "AssertionError",
+        "stack": "AssertionError: Timed out retrying after 10000ms: Expected to find content: 'h3' within the element: <article.rounded-2xl.border.border-white/60.bg-white/70.p-5.shadow-soft.backdrop-blur> but never did.\n    at Context.eval (webpack://frontend/./cypress/e2e/etudiants.cy.ts:27:0)",
+        "parsedStack": [
+          {
+            "message": "AssertionError: Timed out retrying after 10000ms: Expected to find content: 'h3' within the element: <article.rounded-2xl.border.border-white/60.bg-white/70.p-5.shadow-soft.backdrop-blur> but never did.",
+            "whitespace": ""
+          },
+          {
+            "function": "Context.eval",
+            "fileUrl": "http://192.168.1.19:3000/__cypress/tests?p=cypress/e2e/etudiants.cy.ts",
+            "originalFile": "webpack://frontend/./cypress/e2e/etudiants.cy.ts",
+            "relativeFile": "cypress/e2e/etudiants.cy.ts",
+            "absoluteFile": "/home/kadhem/devops-m1/M-Wahid/spring-rest-api-mobile-students-app/frontend/cypress/e2e/etudiants.cy.ts",
+            "line": 27,
+            "column": 0,
+            "whitespace": "    "
+          }
+        ],
+        "codeFrame": {
+          "line": 27,
+          "column": 1,
+          "originalFile": "cypress/e2e/etudiants.cy.ts",
+          "relativeFile": "frontend/cypress/e2e/etudiants.cy.ts",
+          "absoluteFile": "/home/kadhem/devops-m1/M-Wahid/spring-rest-api-mobile-students-app/frontend/cypress/e2e/etudiants.cy.ts",
+          "frame": "  25 |                 if (cards.length > 0) {\n  26 |                     cy.get('article').first().within(() => {\n> 27 |                         cy.contains('h3').should('exist');\n     | ^\n  28 |                         cy.contains('CIN').should('exist');\n  29 |                         cy.contains('Birth date').should('exist');\n  30 |                         cy.contains('First inscription').should('exist');",
+          "language": "ts"
+        }
+      }
+    }
+  ],
+  "passes": [
+    {
+      "title": "loads the actual students page",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Student page loads the actual students page",
+      "duration": 1879,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "shows the list cards or empty state",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Student page shows the list cards or empty state",
+      "duration": 135,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "shows the department filter form",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Student page shows the department filter form",
+      "duration": 154,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "submits the create form with a stubbed API response",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Create flow submits the create form with a stubbed API response",
+      "duration": 1877,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "keeps the form on the same page and exposes validation through native required fields",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Create flow keeps the form on the same page and exposes validation through native required fields",
+      "duration": 384,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "opens an edit page when a student card is available",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Navigation opens an edit page when a student card is available",
+      "duration": 958,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "renders on mobile viewport",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Responsive layout renders on mobile viewport",
+      "duration": 404,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "renders on tablet viewport",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Responsive layout renders on tablet viewport",
+      "duration": 419,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "renders on desktop viewport",
+      "fullTitle": "Gestion des Étudiants - E2E Tests Responsive layout renders on desktop viewport",
+      "duration": 1190,
+      "currentRetry": 0,
+      "err": {}
+    }
+  ]
+}
+  (Results)
+
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ Tests:        10                                                                               │
+  │ Passing:      9                                                                                │
+  │ Failing:      1                                                                                │
+  │ Pending:      0                                                                                │
+  │ Skipped:      0                                                                                │
+  │ Screenshots:  0                                                                                │
+  │ Video:        false                                                                            │
+  │ Duration:     38 seconds                                                                       │
+  │ Spec Ran:     etudiants.cy.ts                                                                  │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+====================================================================================================
+
+  (Run Finished)
+
+
+       Spec                                              Tests  Passing  Failing  Pending  Skipped  
+  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │ ✖  etudiants.cy.ts                          00:38       10        9        1        -        - │
+  └────────────────────────────────────────────────────────────────────────────────────────────────┘
+    ✖  1 of 1 failed (100%)                     00:38       10        9        1        -        -  
+
