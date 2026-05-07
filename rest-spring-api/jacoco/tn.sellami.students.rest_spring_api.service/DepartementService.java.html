@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DepartementService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report"></a> &gt; <a href="index.source.html" class="el_package">tn.sellami.students.rest_spring_api.service</a> &gt; <span class="el_source">DepartementService.java</span></div><h1>DepartementService.java</h1><pre class="source lang-java linenums">package tn.sellami.students.rest_spring_api.service;
+
+import org.springframework.stereotype.Service;
+import tn.sellami.students.rest_spring_api.dto.DepartementDto;
+import tn.sellami.students.rest_spring_api.entity.Departement;
+import tn.sellami.students.rest_spring_api.exception.ResourceNotFoundException;
+import tn.sellami.students.rest_spring_api.mapper.DepartementMapper;
+import tn.sellami.students.rest_spring_api.repository.DepartementRepository;
+
+import java.util.List;
+
+@Service
+public class DepartementService {
+
+    private final DepartementRepository departementRepository;
+
+<span class="fc" id="L17">    public DepartementService(DepartementRepository departementRepository) {</span>
+<span class="fc" id="L18">        this.departementRepository = departementRepository;</span>
+<span class="fc" id="L19">    }</span>
+
+    public List&lt;DepartementDto&gt; findAll() {
+<span class="nc" id="L22">        return departementRepository.findAll().stream().map(DepartementMapper::toDto).toList();</span>
+    }
+
+    public DepartementDto findById(Long id) {
+<span class="nc" id="L26">        Departement departement = departementRepository.findById(id)</span>
+<span class="nc" id="L27">                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Departement with id &quot; + id + &quot; not found&quot;));</span>
+<span class="nc" id="L28">        return DepartementMapper.toDto(departement);</span>
+    }
+
+    public DepartementDto create(DepartementDto departementDto) {
+<span class="nc" id="L32">        Departement departement = DepartementMapper.toEntity(departementDto);</span>
+<span class="nc" id="L33">        departement.setId(null);</span>
+<span class="nc" id="L34">        Departement saved = departementRepository.save(departement);</span>
+<span class="nc" id="L35">        return DepartementMapper.toDto(saved);</span>
+    }
+
+    public DepartementDto update(Long id, DepartementDto departementDto) {
+<span class="nc" id="L39">        Departement existing = departementRepository.findById(id)</span>
+<span class="nc" id="L40">                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Departement with id &quot; + id + &quot; not found&quot;));</span>
+<span class="nc" id="L41">        DepartementMapper.updateEntity(existing, departementDto);</span>
+<span class="nc" id="L42">        Departement saved = departementRepository.save(existing);</span>
+<span class="nc" id="L43">        return DepartementMapper.toDto(saved);</span>
+    }
+
+    public void delete(Long id) {
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (!departementRepository.existsById(id)) {</span>
+<span class="nc" id="L48">            throw new ResourceNotFoundException(&quot;Departement with id &quot; + id + &quot; not found&quot;);</span>
+        }
+<span class="nc" id="L50">        departementRepository.deleteById(id);</span>
+<span class="nc" id="L51">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

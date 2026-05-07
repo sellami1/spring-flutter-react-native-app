@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Student.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report"></a> &gt; <a href="index.source.html" class="el_package">tn.sellami.students.rest_spring_api.entity</a> &gt; <span class="el_source">Student.java</span></div><h1>Student.java</h1><pre class="source lang-java linenums">package tn.sellami.students.rest_spring_api.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.time.Period;
+
+@Entity
+@Table(name = &quot;etudiants&quot;)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Student {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String cin;
+
+    @Column(nullable = false)
+    private String nom;
+
+    @Column(nullable = false)
+    private LocalDate dateNaissance;
+
+    @Column(nullable = false)
+    private Integer anneePremiereInscription;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = &quot;departement_id&quot;)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Departement departement;
+
+    public int age() {
+<span class="fc" id="L43">        return ageAt(LocalDate.now());</span>
+    }
+
+    public int ageAt(LocalDate referenceDate) {
+<span class="fc" id="L47">        return Period.between(this.dateNaissance, referenceDate).getYears();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
