@@ -206,7 +206,7 @@ services:
         ports:
             - '8080:8080'
     mongodb:
-        image: 'mongo:7-alpine'
+        image: 'mongo:7.0-jammy'
         container_name: students-mongodb
         environment:
             MONGO_INITDB_ROOT_USERNAME: mongo
