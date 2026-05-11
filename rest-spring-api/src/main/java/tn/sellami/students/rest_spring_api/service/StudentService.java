@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import tn.sellami.students.rest_spring_api.dto.StudentDto;
 import tn.sellami.students.rest_spring_api.entity.Student;
 import tn.sellami.students.rest_spring_api.exception.ResourceNotFoundException;
+import tn.sellami.students.rest_spring_api.kafka.KafkaProducerService;
 import tn.sellami.students.rest_spring_api.mapper.StudentMapper;
 import tn.sellami.students.rest_spring_api.repository.StudentRepository;
 
@@ -15,9 +16,11 @@ import java.util.List;
 public class StudentService {
 
     private final StudentRepository studentRepository;
+    private final KafkaProducerService kafkaProducerService;
 
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(StudentRepository studentRepository, KafkaProducerService kafkaProducerService) {
         this.studentRepository = studentRepository;
+        this.kafkaProducerService = kafkaProducerService;
     }
 
     @Cacheable(value = "etudiants")
@@ -46,7 +49,9 @@ public class StudentService {
         Student student = StudentMapper.toEntity(studentDto);
         student.setId(null);
         Student saved = studentRepository.save(student);
-        return StudentMapper.toDto(saved);
+        StudentDto savedDto = StudentMapper.toDto(saved);
+        kafkaProducerService.publishStudentCreated(savedDto);
+        return savedDto;
     }
 
     @CacheEvict(value = "etudiants", allEntries = true)

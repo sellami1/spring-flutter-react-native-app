@@ -1,0 +1,11 @@
+Label,Summary,Assignee
+planning,Create branch version-5 and initialize Jira Sprint 5 backlog,kadhemsellami1@gmail.com
+planning,Write Sprint 5 user stories and acceptance criteria for Q1-Q3,kadhemsellami1@gmail.com
+kafka,Add Kafka and Zookeeper services to docker-compose,kadhemsellami1@gmail.com
+kafka,Publish student-created events from etudiant-service,kadhemsellami1@gmail.com
+kafka,Publish note-created events from grading-service,kadhemsellami1@gmail.com
+kafka,Create notification-service Kafka consumer,kadhemsellami1@gmail.com
+observability,Add logstash logback encoder and logback configs,kadhemsellami1@gmail.com
+observability,Add ELK stack services and Logstash pipeline,kadhemsellami1@gmail.com
+observability,Add Prometheus and Grafana with Actuator metrics,kadhemsellami1@gmail.com
+devops,Configure health checks for core services,kadhemsellami1@gmail.com

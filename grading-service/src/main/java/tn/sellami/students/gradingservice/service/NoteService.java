@@ -6,6 +6,7 @@ import tn.sellami.students.gradingservice.client.StudentClient;
 import tn.sellami.students.gradingservice.dto.NoteDto;
 import tn.sellami.students.gradingservice.entity.Note;
 import tn.sellami.students.gradingservice.exception.ResourceNotFoundException;
+import tn.sellami.students.gradingservice.kafka.KafkaProducerService;
 import tn.sellami.students.gradingservice.mapper.NoteMapper;
 import tn.sellami.students.gradingservice.repository.NoteRepository;
 
@@ -16,10 +17,14 @@ public class NoteService {
 
     private final NoteRepository noteRepository;
     private final StudentClient studentClient;
+    private final KafkaProducerService kafkaProducerService;
 
-    public NoteService(NoteRepository noteRepository, StudentClient studentClient) {
+    public NoteService(NoteRepository noteRepository,
+                       StudentClient studentClient,
+                       KafkaProducerService kafkaProducerService) {
         this.noteRepository = noteRepository;
         this.studentClient = studentClient;
+        this.kafkaProducerService = kafkaProducerService;
     }
 
     public List<NoteDto> findAll() {
@@ -45,7 +50,9 @@ public class NoteService {
         Note note = NoteMapper.toEntity(noteDto);
         note.setId(null);
         Note saved = noteRepository.save(note);
-        return NoteMapper.toDto(saved);
+        NoteDto savedDto = NoteMapper.toDto(saved);
+        kafkaProducerService.publishNoteCreated(savedDto);
+        return savedDto;
     }
 
     public NoteDto update(Long id, NoteDto noteDto) {

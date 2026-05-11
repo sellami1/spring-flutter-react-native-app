@@ -30,6 +30,27 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
+    zookeeper:
+        image: 'confluentinc/cp-zookeeper:7.5.0'
+        container_name: students-zookeeper
+        environment:
+            ZOOKEEPER_CLIENT_PORT: 2181
+        ports:
+            - '2181:2181'
+    kafka:
+        image: 'confluentinc/cp-kafka:7.5.0'
+        container_name: students-kafka
+        depends_on:
+            - zookeeper
+        ports:
+            - '9092:9092'
+            - '29092:29092'
+        environment:
+            KAFKA_BROKER_ID: 1
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     eureka-server:
         build:
             context: ./eureka-server
@@ -50,6 +71,7 @@ services:
             DB_PASSWORD: postgres
             REDIS_HOST: redis
             REDIS_PORT: 6379
+            KAFKA_BOOTSTRAP_SERVERS: kafka:9092
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
             EUREKA_INSTANCE_PREFER_IP_ADDRESS: "false"
             EUREKA_INSTANCE_HOSTNAME: etudiant-service
@@ -58,10 +80,22 @@ services:
                 condition: service_healthy
             redis:
                 condition: service_healthy
+            kafka:
+                condition: service_started
             eureka-server:
                 condition: service_started
         ports:
             - '8081:8081'
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - -f
+                - http://localhost:8081/actuator/health
+            interval: 30s
+            timeout: 10s
+            retries: 5
+            start_period: 60s
     grading-service:
         build:
             context: ./grading-service
@@ -73,16 +107,90 @@ services:
             DB_NAME: students_db
             DB_USERNAME: postgres
             DB_PASSWORD: postgres
+            KAFKA_BOOTSTRAP_SERVERS: kafka:9092
             EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
             EUREKA_INSTANCE_PREFER_IP_ADDRESS: "false"
             EUREKA_INSTANCE_HOSTNAME: grading-service
         depends_on:
             postgres:
                 condition: service_healthy
+            kafka:
+                condition: service_started
             eureka-server:
                 condition: service_started
         ports:
             - '8082:8082'
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - -f
+                - http://localhost:8082/actuator/health
+            interval: 30s
+            timeout: 10s
+            retries: 5
+            start_period: 60s
+    notification-service:
+        build:
+            context: ./notification-service
+        container_name: students-notification-service
+        environment:
+            SERVER_PORT: 8083
+            KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+        depends_on:
+            kafka:
+                condition: service_started
+        ports:
+            - '8083:8083'
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - -f
+                - http://localhost:8083/actuator/health
+            interval: 30s
+            timeout: 10s
+            retries: 5
+            start_period: 60s
+    elasticsearch:
+        image: 'docker.elastic.co/elasticsearch/elasticsearch:8.12.0'
+        container_name: students-elasticsearch
+        environment:
+            discovery.type: single-node
+            xpack.security.enabled: "false"
+        ports:
+            - '9200:9200'
+    logstash:
+        image: 'docker.elastic.co/logstash/logstash:8.12.0'
+        container_name: students-logstash
+        ports:
+            - '5000:5000'
+            - '9600:9600'
+        volumes:
+            - './observability/logstash/pipeline:/usr/share/logstash/pipeline'
+        depends_on:
+            - elasticsearch
+    kibana:
+        image: 'docker.elastic.co/kibana/kibana:8.12.0'
+        container_name: students-kibana
+        ports:
+            - '5601:5601'
+        depends_on:
+            - elasticsearch
+    prometheus:
+        image: 'prom/prometheus:latest'
+        container_name: students-prometheus
+        volumes:
+            - './observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'
+        ports:
+            - '9090:9090'
+    grafana:
+        image: 'grafana/grafana:latest'
+        container_name: students-grafana
+        ports:
+            - '3002:3000'
+        depends_on:
+            - prometheus
     api-gateway:
         build:
             context: ./api-gateway
