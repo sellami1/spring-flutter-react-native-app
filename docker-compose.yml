@@ -48,7 +48,7 @@ services:
         environment:
             KAFKA_BROKER_ID: 1
             KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://${PUBLIC_HOST:-localhost}:29092
             KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
             KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     eureka-server:
@@ -245,7 +245,7 @@ services:
         container_name: students-frontend
         environment:
             API_BASE_URL: http://api-gateway:8080
-            NEXT_PUBLIC_API_BASE_URL: http://localhost:8080
+            NEXT_PUBLIC_API_BASE_URL: http://${PUBLIC_HOST:-localhost}:8080
         depends_on:
             api-gateway:
                 condition: service_started
